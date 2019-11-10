@@ -191,7 +191,7 @@ sfdx force:org:display -u $TARGET_SCRATCH_ORG_ALIAS" > $testSetupScript
   if [ ! -f $testRunScript ]; then
     log "Creating $testRunScript ..."
     cat > $testRunScript << EOF
-sfdx force:apex:test:run -r json -u $TARGET_SCRATCH_ORG_ALIAS --loglevel=error > coverage.json
+sfdx force:apex:test:run -c -r json -u $TARGET_SCRATCH_ORG_ALIAS --loglevel=error > coverage.json
 cat coverage.json
 
 export SONAR_SCANNER_VERSION=4.0.0.1744
