@@ -191,7 +191,7 @@ sfdx force:org:display -u $TARGET_SCRATCH_ORG_ALIAS" > $testSetupScript
   if [ ! -f $testRunScript ]; then
     log "Creating $testRunScript ..."
     cat > $testRunScript << EOF
-sfdx force:apex:test:run -r junit -u $TARGET_SCRATCH_ORG_ALIAS --loglevel=error > coverage.xml
+sfdx force:apex:test:run -r json -u $TARGET_SCRATCH_ORG_ALIAS --loglevel=error > coverage.json
 
 export SONAR_SCANNER_VERSION=4.0.0.1744
 export SONAR_SCANNER_HOME=".sonar/sonar-scanner-4.0.0.1744"
@@ -204,9 +204,12 @@ export SONAR_SCANNER_OPTS="-server"
 .sonar/sonar-scanner-4.0.0.1744/bin/sonar-scanner \
   -Dsonar.projectKey=curiousblueprints_salesforce-dx-pipeline-sample \
   -Dsonar.organization=curiousblueprints \
-  -Dsonar.sources=. \
+  -Dsonar.sources=./force-app/main \
+  -Dsonar.tests=./force-app/test
   -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=$SONAR_LOGIN
+  -Dsonar.login=$SONAR_LOGIN \
+  -Dsonar.scm.provider=github \
+  -Dsonar.apex.coverage.reportPath=coverage.json
 
 exit_status=\$?
 
