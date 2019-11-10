@@ -205,7 +205,7 @@ rm .sonar/sonar-scanner.zip
 export PATH=.sonar/sonar-scanner-4.0.0.1744-linux/bin:$PATH
 export SONAR_SCANNER_OPTS="-server"
 
-.sonar/sonar-scanner-4.0.0.1744-linux/bin/sonar-scanner \
+sonar-scanner \
   -Dsonar.projectKey=curiousblueprints_salesforce-dx-pipeline-sample \
   -Dsonar.organization=curiousblueprints \
   -Dsonar.sources=. \
