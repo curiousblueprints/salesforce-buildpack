@@ -196,12 +196,12 @@ sfdx force:apex:test:run -r junit -u $TARGET_SCRATCH_ORG_ALIAS --loglevel=error 
 export SONAR_SCANNER_VERSION=4.0.0.1744
 export SONAR_SCANNER_HOME=".sonar/sonar-scanner-4.0.0.1744"
 rm -rf $SONAR_SCANNER_HOME
-mkdir -p "$SONAR_SCANNER_HOME"
+mkdir -p .sonar/sonar-scanner-4.0.0.1744
 curl -sSLo .sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.0.0.1744.zip
 unzip .sonar/sonar-scanner.zip -d .sonar/
 rm .sonar/sonar-scanner.zip
 export SONAR_SCANNER_OPTS="-server"
-$SONAR_SCANNER_HOME/sonar-scanner \
+.sonar/sonar-scanner-4.0.0.1744/sonar-scanner \
   -Dsonar.projectKey=curiousblueprints_salesforce-dx-pipeline-sample \
   -Dsonar.organization=curiousblueprints \
   -Dsonar.sources=. \
