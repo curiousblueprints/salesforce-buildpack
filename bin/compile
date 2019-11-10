@@ -191,9 +191,9 @@ sfdx force:org:display -u $TARGET_SCRATCH_ORG_ALIAS" > $testSetupScript
   if [ ! -f $testRunScript ]; then
     log "Creating $testRunScript ..."
     cat > $testRunScript << EOF
-sfdx force:apex:test:run -r junit -u $TARGET_SCRATCH_ORG_ALIAS --loglevel=error > codecov.xml
-cat codecov.xml
-bash <(curl -s https://codecov.io/bash) -Z -C $HEROKU_TEST_RUN_COMMIT_VERSION -t $CODECOV_TOKEN -f codecov.xml
+sfdx force:apex:test:run -r json -u $TARGET_SCRATCH_ORG_ALIAS --loglevel=error > codecov.json
+cat codecov.json
+bash <(curl -s https://codecov.io/bash) -Z -C $HEROKU_TEST_RUN_COMMIT_VERSION -t $CODECOV_TOKEN -f codecov.json
 exit_status=\$?
 
 if [ "$delete_test_org" != "false" ]; then
