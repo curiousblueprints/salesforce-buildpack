@@ -201,7 +201,7 @@ curl -sSLo .sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distributio
 unzip .sonar/sonar-scanner.zip -d .sonar/
 rm .sonar/sonar-scanner.zip
 export SONAR_SCANNER_OPTS="-server"
-.sonar/sonar-scanner-4.0.0.1744/sonar-scanner \
+.sonar/sonar-scanner-4.0.0.1744/bin/sonar-scanner \
   -Dsonar.projectKey=curiousblueprints_salesforce-dx-pipeline-sample \
   -Dsonar.organization=curiousblueprints \
   -Dsonar.sources=. \
