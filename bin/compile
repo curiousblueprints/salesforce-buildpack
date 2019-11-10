@@ -194,18 +194,18 @@ sfdx force:org:display -u $TARGET_SCRATCH_ORG_ALIAS" > $testSetupScript
 sfdx force:apex:test:run -r junit -u $TARGET_SCRATCH_ORG_ALIAS --loglevel=error > codecov.xml
 
 export SONAR_SCANNER_VERSION=4.0.0.1744
-export SONAR_SCANNER_HOME=".sonar/sonar-scanner-4.0.0.1744"
-rm -rf .sonar/sonar-scanner-4.0.0.1744
+export SONAR_SCANNER_HOME=".sonar/sonar-scanner-4.0.0.1744-linux"
+rm -rf .sonar/sonar-scanner-4.0.0.1744-linux
 echo "$SONAR_SCANNER_HOME"
 echo "^ sonar scanner home"
-mkdir -p .sonar
+mkdir -p .sonar/sonar-scanner-4.0.0.1744-linux
 curl -SLo .sonar/sonar-scanner.zip "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.0.0.1744.zip"
 unzip .sonar/sonar-scanner.zip -d .sonar/
 rm .sonar/sonar-scanner.zip
-export PATH=.sonar/sonar-scanner-4.0.0.1744/bin:$PATH
+export PATH=.sonar/sonar-scanner-4.0.0.1744-linux/bin:$PATH
 export SONAR_SCANNER_OPTS="-server"
 
-.sonar/sonar-scanner-4.0.0.1744/bin/sonar-scanner \
+.sonar/sonar-scanner-4.0.0.1744-linux/bin/sonar-scanner \
   -Dsonar.projectKey=curiousblueprints_salesforce-dx-pipeline-sample \
   -Dsonar.organization=curiousblueprints \
   -Dsonar.sources=. \
