@@ -208,7 +208,7 @@ export SONAR_SCANNER_OPTS="-server"
   -Dsonar.tests=./force-app/test \
   -Dsonar.host.url=https://sonarcloud.io \
   -Dsonar.login=$SONAR_LOGIN \
-  -Dsonar.scm.provider=github \
+  -Dsonar.scm.provider=git \
   -Dsonar.apex.coverage.reportPath=coverage.json
 
 exit_status=\$?
