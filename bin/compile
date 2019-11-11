@@ -129,6 +129,7 @@ if [ "$STAGE" == "" ]; then
   # Store creds for scratch org
   scratchSfdxAuthUrl=$(sfdx force:org:display --verbose -u $TARGET_SCRATCH_ORG_ALIAS --json | jq -r .result.sfdxAuthUrl)
   debug "scratchSfdxAuthUrl: $scratchSfdxAuthUrl"
+  sfdx force:org:open -u $TARGET_SCRATCH_ORG_ALIAS -r | egrep -o "https.*" > url
   
   # Store creds in file reflecting the source version (if not running CI)
   scratchOrgAuthFile=$BUILD_DIR/$vendorDir/$TARGET_SCRATCH_ORG_ALIAS
@@ -192,7 +193,6 @@ sfdx force:org:display -u $TARGET_SCRATCH_ORG_ALIAS" > $testSetupScript
     log "Creating $testRunScript ..."
     cat > $testRunScript << EOF
 sfdx force:apex:test:run -c -r junit -u $TARGET_SCRATCH_ORG_ALIAS --loglevel=error > coverage.xml
-sfdx force:org:open -u $TARGET_SCRATCH_ORG_ALIAS -r | egrep -o "https.*" > url
 cat coverage.xml
 
 export SONAR_SCANNER_VERSION=4.0.0.1744
