@@ -252,7 +252,8 @@ fi
 if [ ! -f $BUILD_DIR/Procfile ]; then
   log "Creating Procfile ..."
   echo "# Deploy source to production org.
-release: ./"$vendorDir"/release.sh \"$TARGET_SCRATCH_ORG_ALIAS\" \"$SFDX_PACKAGE_VERSION_ID\"" > $BUILD_DIR/Procfile
+release: ./"$vendorDir"/release.sh \"$TARGET_SCRATCH_ORG_ALIAS\" \"$SFDX_PACKAGE_VERSION_ID\"
+web: node review-app/index.js" > $BUILD_DIR/Procfile
 
   debug "Generated Procfile that will deploy source in release phase and redirect to open-path in web phase"
 fi
